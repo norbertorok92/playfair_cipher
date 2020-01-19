@@ -1,33 +1,42 @@
 
 key=input("Enter key: ")
-key=key.replace(" ", "")
+key=key.replace(" ", "") # schimbam " " cu ""
 key=key.upper()
+
 def matrix(x,y,initial):
     return [[initial for i in range(x)] for j in range(y)]
-    
-result=list()
-for c in key: #storing key
+
+result=list() # definim o lista goala
+for c in key: 
     if c not in result:
         if c=='J':
-            result.append('I')
+            result.append('I') # daca caracterul este J inlocuim cu I
         else:
-            result.append(c)
+            result.append(c) # punem la sfarsitul listei caracterul daca nu exista deja in lista
+
 flag=0
-for i in range(65,91): #storing other character
-    if chr(i) not in result:
-        if i==73 and chr(74) not in result:
-            result.append("I")
+for i in range(65,91): # facem un loop peste alfabet (range(65,91) insemnand caractere ASCII UPPERCASE)
+    if chr(i) not in result: # daca caracterul nu este deja in lista
+        if i==73 and chr(74) not in result: # si daca caracterul este I si J inca nu este in lista
+            result.append("I") # punem un I la sfarsitul listei
             flag=1
         elif flag==0 and i==73 or i==74:
-            pass    
+            pass
         else:
-            result.append(chr(i))
+            result.append(chr(i)) # punem la sfarsitul listei caracterele in ordine alfabetica
+
 k=0
-my_matrix=matrix(5,5,0) #initialize matrix
-for i in range(0,5): #making matrix
+my_matrix=matrix(5,5,0) # initializare matrix 5x5
+for i in range(0,5): # facem matrixul
     for j in range(0,5):
         my_matrix[i][j]=result[k]
         k+=1
+    # matricul va arata cam asa:
+    # [['M', 'E', 'T', 'A', 'N'],
+    #  ['O', 'B', 'C', 'D', 'F'],
+    #  ['G', 'H', 'I', 'K', 'L'],
+    #  ['P', 'Q', 'R', 'S', 'U'],
+    #  ['V', 'W', 'X', 'Y', 'Z']]
 
 def locindex(c): #get location of each character
     loc=list()
